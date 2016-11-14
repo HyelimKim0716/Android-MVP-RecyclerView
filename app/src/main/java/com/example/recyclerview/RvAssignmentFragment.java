@@ -2,12 +2,11 @@ package com.example.recyclerview;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
+import com.example.recyclerview.base.BaseFragment;
 import com.example.recyclerview.presenter.MainPresenter;
-import com.example.recyclerview.view.BaseFragment;
-import com.example.recyclerview.view.BaseView;
-
-import java.util.ArrayList;
+import com.example.recyclerview.view.MainView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,19 +18,14 @@ import butterknife.ButterKnife;
  * Show 100 items on the list before adapting MVP pattern.
  */
 
-public class RvAssignmentFragment extends BaseFragment implements BaseView {
+public class RvAssignmentFragment extends BaseFragment implements MainView {
 
-    private final int ITEM_COUNT = 100;
     @Bind(R.id.rvAssignment_recyclerView)
     RecyclerView recyclerView;
 
-//    private RecyclerView recyclerView;
-    private RvAdapter mAdapter;
-    private ArrayList<Integer> mList;
-
     private MainPresenter mPresenter;
-    @Override
 
+    @Override
     protected int getLayoutRes() {
         return R.layout.fragment_rv_assignment;
     }
@@ -41,33 +35,23 @@ public class RvAssignmentFragment extends BaseFragment implements BaseView {
         mPresenter = new MainPresenter(getContext(), this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        setAdapter();
-
-    }
-
-    private void setAdapter() {
-        if (mAdapter == null) {
-            mAdapter = new RvAdapter(getContext(), mList);
-            recyclerView.setAdapter(mAdapter);
-        }
-
-        mList = new ArrayList<>();
-
-        for (int i = 1; i < ITEM_COUNT + 1; i++) {
-            mList.add(i);
-        }
-    }
-
-
-    @Override
-    public void setPresenter(Object presenter) {
-
+        recyclerView.setAdapter(mPresenter.getAdapter());
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void makeToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setPresenter(MainPresenter presenter) {
+        mPresenter.setData();
+        recyclerView.addOnItemTouchListener(mPresenter.getOnItemTouchListener());
     }
 }

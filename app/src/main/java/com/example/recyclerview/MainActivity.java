@@ -2,7 +2,7 @@ package com.example.recyclerview;
 
 import android.widget.RelativeLayout;
 
-import com.example.recyclerview.view.BaseActivity;
+import com.example.recyclerview.base.BaseActivity;
 
 import butterknife.Bind;
 
