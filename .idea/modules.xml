@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MvpFirstAssignment_HyelimKim.iml" filepath="$PROJECT_DIR$/MvpFirstAssignment_HyelimKim.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MvpStudyRecyclerView.iml" filepath="$PROJECT_DIR$/MvpStudyRecyclerView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

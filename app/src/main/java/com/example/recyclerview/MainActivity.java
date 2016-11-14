@@ -1,25 +1,23 @@
 package com.example.recyclerview;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.recyclerview.view.BaseActivity;
+
+import butterknife.Bind;
+
+public class MainActivity extends BaseActivity {
+
+    @Bind(R.id.activityMain_container)
+    RelativeLayout mainContainer;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        addFragment(new RvAssignmentFragment());
+    protected int getLayoutRes() {
+        return R.layout.activity_main;
     }
 
-    public void addFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.activityMain_container, fragment);
-        fragmentTransaction.commit();
+    @Override
+    protected void onCreate() {
+        addFragment(R.id.activityMain_container, new RvAssignmentFragment());
     }
 }
